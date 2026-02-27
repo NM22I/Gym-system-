@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIT ZONE | لوحة التحكم</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard-body">
+    <!-- Side menu button for small screens -->
+    <button class="menu-toggle" onclick="toggleSidebar()">
+        <i class="fas fa-chevron-right"></i>
+    </button>
+    
+
+    <div id="sidebarOverlay" class="sidebar-overlay" onclick="closeSidebar()"></div>
+    
+    <div class="dashboard-container">
+        <!-- ===== Side menu ===== -->
+        <div id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-dumbbell"></i>
+                <h2>FIT ZONE</h2>
+            </div>
+            
+            <div class="user-info">
+                <div class="user-avatar">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <h4 class="user-name">أحمد محمد</h4>
+                <p class="user-membership">عضوية احترافية</p>
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li><a href="2-dashboard.html" class="active"><i class="fas fa-tachometer-alt"></i> لوحة التحكم</a></li>
+                <li><a href="#" onclick="alert('صفحة الأعضاء (قيد الإنشاء)')"><i class="fas fa-users"></i> الأعضاء</a></li>
+                <li><a href="#" onclick="alert('صفحة المدربين (قيد الإنشاء)')"><i class="fas fa-chalkboard-teacher"></i> المدربين</a></li>
+                <li><a href="#" onclick="alert('صفحة الحصص (قيد الإنشاء)')"><i class="fas fa-calendar-alt"></i> الحصص التدريبية</a></li>
+                <li><a href="#" onclick="alert('صفحة الحجوزات (قيد الإنشاء)')"><i class="fas fa-calendar-check"></i> الحجوزات</a></li>
+                <li><a href="#" onclick="alert('صفحة المدفوعات (قيد الإنشاء)')"><i class="fas fa-credit-card"></i> المدفوعات</a></li>
+                <li><a href="#" onclick="alert('صفحة التقارير (قيد الإنشاء)')"><i class="fas fa-chart-bar"></i> التقارير</a></li>
+                <li><a href="#" onclick="alert('صفحة الملف الشخصي (قيد الإنشاء)')"><i class="fas fa-user-circle"></i> الملف الشخصي</a></li>
+            </ul>
+        </div>
+        
+        <!-- ===== Main content ===== -->
+        <div id="mainContent" class="main-content">
+            <!-- ===== Top strip ===== -->
+            <div class="top-bar">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="بحث...">
+                </div>
+                
+                <div class="user-menu">
+                    <!-- ===== Notifications section ===== -->
+                    <div class="notifications" onclick="toggleNotifications()">
+                        <i class="fas fa-bell"></i>
+                        <span id="notificationBadge" class="badge">5</span>
+                        
+                        <!-- Drop-down notifications list -->
+                        <div id="notificationsDropdown" class="notifications-dropdown">
+                            <div class="notifications-header">
+                                <h4>الإشعارات</h4>
+                                <span class="mark-all-read" onclick="event.stopPropagation(); markAllAsRead()">تحديد الكل كمقروء</span>
+                            </div>
+                            <div id="notificationsList" class="notifications-list">
+                                <div class="notification-item unread">
+                                    <div class="notification-icon blue">
+                                        <i class="fas fa-user-plus"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <div class="notification-title">تم إضافة عضو جديد</div>
+                                        <div>أحمد محمد انضم للصالة الرياضية</div>
+                                        <div class="notification-time">منذ 5 دقائق</div>
+                                    </div>
+                                </div>
+                                <div class="notification-item unread">
+                                    <div class="notification-icon green">
+                                        <i class="fas fa-calendar-check"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <div class="notification-title">حجز جديد</div>
+                                        <div>تم حجز حصة تمارين قوة</div>
+                                        <div class="notification-time">منذ 15 دقيقة</div>
+                                    </div>
+                                </div>
+                                <div class="notification-item unread">
+                                    <div class="notification-icon orange">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <div class="notification-title">تذكير بموعد</div>
+                                        <div>حصتك بعد ساعة</div>
+                                        <div class="notification-time">منذ 30 دقيقة</div>
+                                    </div>
+                                </div>
+                                <div class="notification-item">
+                                    <div class="notification-icon blue">
+                                        <i class="fas fa-credit-card"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <div class="notification-title">دفعة جديدة</div>
+                                        <div>تم استلام دفعة بقيمة 499 ريال</div>
+                                        <div class="notification-time">منذ ساعة</div>
+                                    </div>
+                                </div>
+                                <div class="notification-item">
+                                    <div class="notification-icon red">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                    </div>
+                                    <div class="notification-content">
+                                        <div class="notification-title">عضوية منتهية</div>
+                                        <div>3 أعضاء بحاجة لتجديد العضوية</div>
+                                        <div class="notification-time">منذ 3 ساعات</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="notification-footer">
+                                <a href="#" class="view-all" onclick="event.stopPropagation(); alert('عرض جميع الإشعارات')">عرض الكل</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- ===== User menuUser menu===== -->
+                    <div class="user-dropdown" onclick="toggleUserMenu()">
+                        <i class="fas fa-user-circle"></i>
+                        <span class="user-name">أحمد محمد</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    
+                    <div id="userMenu">
+                        <a href="#" onclick="alert('الملف الشخصي (قيد الإنشاء)')">الملف الشخصي</a>
+                        <a href="#" onclick="logout()">تسجيل الخروج</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ===== Welcome card ===== -->
+            <div class="welcome-card">
+                <h2>مرحباً بك، <span id="welcomeUserName">أحمد</span> 👋</h2>
+                <p>نشاط الصالة الرياضية لليوم</p>
+                <div class="current-date"></div>
+            </div>
+            
+            <!-- ===== بطاقات الإحصائيات ===== -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon blue">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-details">
+                        <h3>156</h3>
+                        <p>إجمالي الأعضاء</p>
+                        <span class="trend up"><i class="fas fa-arrow-up"></i> +12 هذا الشهر</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon green">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="stat-details">
+                        <h3>43</h3>
+                        <p>حجوزات اليوم</p>
+                        <span class="trend up"><i class="fas fa-arrow-up"></i> +8 عن الأمس</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon orange">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <div class="stat-details">
+                        <h3>12</h3>
+                        <p>المدربين النشطين</p>
+                        <span class="trend down"><i class="fas fa-arrow-down"></i> -2 هذا الأسبوع</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon purple">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="stat-details">
+                        <h3>45,678</h3>
+                        <p>الإيرادات</p>
+                        <span class="trend up"><i class="fas fa-arrow-up"></i> +23% هذا الشهر</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ===== Quick links to pages===== -->
+            <div class="content-card">
+                <div class="card-header">
+                    <h2>الصفحات المتاحة</h2>
+                </div>
+                
+                <div class="quick-links">
+                    <a href="#" class="quick-link" onclick="alert('صفحة الأعضاء (قيد الإنشاء)')">
+                        <i class="fas fa-users"></i>
+                        الأعضاء
+                    </a>
+                    <a href="#" class="quick-link" onclick="alert('صفحة المدربين (قيد الإنشاء)')">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        المدربين
+                    </a>
+                    <a href="#" class="quick-link" onclick="alert('صفحة الحصص (قيد الإنشاء)')">
+                        <i class="fas fa-calendar-alt"></i>
+                        الحصص
+                    </a>
+                    <a href="#" class="quick-link" onclick="alert('صفحة الحجوزات (قيد الإنشاء)')">
+                        <i class="fas fa-calendar-check"></i>
+                        الحجوزات
+                    </a>
+                    <a href="#" class="quick-link" onclick="alert('صفحة المدفوعات (قيد الإنشاء)')">
+                        <i class="fas fa-credit-card"></i>
+                        المدفوعات
+                    </a>
+                    <a href="#" class="quick-link" onclick="alert('صفحة التقارير (قيد الإنشاء)')">
+                        <i class="fas fa-chart-bar"></i>
+                        التقارير
+                    </a>
+                </div>
+            </div>
+            
+            <!-- ===== Last bookings ===== -->
+            <div class="content-card">
+                <div class="card-header">
+                    <h2>آخر الحجوزات</h2>
+                    <a href="#" class="btn-small" onclick="alert('عرض جميع الحجوزات')">عرض الكل</a>
+                </div>
+                
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>العضو</th>
+                                <th>الحصة</th>
+                                <th>التاريخ</th>
+                                <th>الوقت</th>
+                                <th>الحالة</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="member-avatar">أ</div>
+                                    أحمد علي
+                                </td>
+                                <td>تمارين قوة</td>
+                                <td>2024-01-15</td>
+                                <td>10:00 ص</td>
+                                <td><span class="badge-success">مؤكد</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="member-avatar">س</div>
+                                    سارة محمد
+                                </td>
+                                <td>يوغا</td>
+                                <td>2024-01-15</td>
+                                <td>5:00 م</td>
+                                <td><span class="badge-warning">في الانتظار</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="member-avatar">خ</div>
+                                    خالد عمر
+                                </td>
+                                <td>كروس فيت</td>
+                                <td>2024-01-16</td>
+                                <td>4:00 م</td>
+                                <td><span class="badge-success">مؤكد</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="member-avatar">ن</div>
+                                    نورة أحمد
+                                </td>
+                                <td>كارديو</td>
+                                <td>2024-01-16</td>
+                                <td>9:00 ص</td>
+                                <td><span class="badge-success">مؤكد</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- ===== Recent activities===== -->
+            <div class="content-card">
+                <div class="card-header">
+                    <h2>آخر النشاطات</h2>
+                </div>
+                
+                <div>
+                    <div class="activity-item">
+                        <div class="activity-icon blue">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <div class="activity-content">
+                            <div class="activity-title">عضو جديد</div>
+                            <div class="activity-description">انضم محمد أحمد إلى العضوية الاحترافية</div>
+                        </div>
+                        <div class="activity-time">منذ 10 دقائق</div>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div class="activity-icon green">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <div class="activity-content">
+                            <div class="activity-title">دفعة جديدة</div>
+                            <div class="activity-description">تم استلام 499 ريال من سارة خالد</div>
+                        </div>
+                        <div class="activity-time">منذ 25 دقيقة</div>
+                    </div>
+                    
+                    <div class="activity-item">
+                        <div class="activity-icon orange">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="activity-content">
+                            <div class="activity-title">حجز جديد</div>
+                            <div class="activity-description">تم حجز حصة كروس فيت</div>
+                        </div>
+                        <div class="activity-time">منذ ساعة</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
