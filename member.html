@@ -1,0 +1,344 @@
+ <!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIT ZONE | الأعضاء</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard-body" onload="loadMembersPage()">
+    <!--Side menu button for small screens-->
+    <button class="menu-toggle" onclick="toggleSidebar()">
+        <i class="fas fa-chevron-right"></i>
+    </button>
+    
+
+    <div id="sidebarOverlay" class="sidebar-overlay" onclick="closeSidebar()"></div>
+    
+    <div class="dashboard-container">
+        <!-- =====Side menu===== -->
+        <div id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-dumbbell"></i>
+                <h2>FIT ZONE</h2>
+            </div>
+            
+            <div class="user-info">
+                <div class="user-avatar">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <h4 class="user-name">أحمد محمد</h4>
+                <p class="user-membership">عضوية احترافية</p>
+            </div>
+            
+            <ul class="sidebar-menu">
+                <li><a href="2-dashboard.html"><i class="fas fa-tachometer-alt"></i> لوحة التحكم</a></li>
+                <li><a href="3-members.html" class="active"><i class="fas fa-users"></i> الأعضاء</a></li>
+                <li><a href="#" onclick="alert('صفحة المدربين (قيد الإنشاء)')"><i class="fas fa-chalkboard-teacher"></i> المدربين</a></li>
+                <li><a href="#" onclick="alert('صفحة الحصص (قيد الإنشاء)')"><i class="fas fa-calendar-alt"></i> الحصص التدريبية</a></li>
+                <li><a href="#" onclick="alert('صفحة الحجوزات (قيد الإنشاء)')"><i class="fas fa-calendar-check"></i> الحجوزات</a></li>
+                <li><a href="#" onclick="alert('صفحة المدفوعات (قيد الإنشاء)')"><i class="fas fa-credit-card"></i> المدفوعات</a></li>
+                <li><a href="#" onclick="alert('صفحة التقارير (قيد الإنشاء)')"><i class="fas fa-chart-bar"></i> التقارير</a></li>
+                <li><a href="#" onclick="alert('صفحة الملف الشخصي (قيد الإنشاء)')"><i class="fas fa-user-circle"></i> الملف الشخصي</a></li>
+            </ul>
+        </div>
+        
+        <!-- ===== Main content  ===== -->
+        <div id="mainContent" class="main-content">
+            <!-- =====top strip===== -->
+            <div class="top-bar">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="بحث عن عضو..." onkeyup="searchMembers(this)">
+                </div>
+                
+                <div class="user-menu">
+                    <!-- ===== Notifications ===== -->
+                    <div class="notifications" onclick="toggleNotifications()">
+                        <i class="fas fa-bell"></i>
+                        <span id="notificationBadge" class="badge">3</span>
+                        
+                        <div id="notificationsDropdown" class="notifications-dropdown">
+                            <div class="notifications-header">
+                                <h4>الإشعارات</h4>
+                                <span class="mark-all-read" onclick="event.stopPropagation(); markAllAsRead()">تحديد الكل كمقروء</span>
+                            </div>
+                            <div id="notificationsList" class="notifications-list">
+                                <!--Notifications here-->
+                            </div>
+                            <div class="notification-footer">
+                                <a href="#" class="view-all" onclick="event.stopPropagation(); alert('عرض جميع الإشعارات')">عرض الكل</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- =====User menu===== -->
+                    <div class="user-dropdown" onclick="toggleUserMenu()">
+                        <i class="fas fa-user-circle"></i>
+                        <span class="user-name">أحمد محمد</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    
+                    <div id="userMenu">
+                        <a href="#" onclick="alert('الملف الشخصي (قيد الإنشاء)')">الملف الشخصي</a>
+                        <a href="#" onclick="logout()">تسجيل الخروج</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- =====Page title===== -->
+            <div class="content-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-users" style="color: #667eea;"></i> إدارة الأعضاء</h2>
+                    <button class="btn-small" onclick="addMember()">
+                        <i class="fas fa-plus"></i> إضافة عضو جديد
+                    </button>
+                </div>
+                
+                <!-- =====Quick statistics===== -->
+                <div class="member-stats">
+                    <div class="member-stat-card">
+                        <div class="member-stat-icon blue">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="member-stat-info">
+                            <h3 id="totalMembers">0</h3>
+                            <p>إجمالي الأعضاء</p>
+                            <small>+12 هذا الشهر</small>
+                        </div>
+                    </div>
+                    
+                    <div class="member-stat-card">
+                        <div class="member-stat-icon green">
+                            <i class="fas fa-user-check"></i>
+                        </div>
+                        <div class="member-stat-info">
+                            <h3 id="activeMembers">0</h3>
+                            <p>أعضاء نشطين</p>
+                            <small>85% من الإجمالي</small>
+                        </div>
+                    </div>
+                    
+                    <div class="member-stat-card">
+                        <div class="member-stat-icon orange">
+                            <i class="fas fa-user-clock"></i>
+                        </div>
+                        <div class="member-stat-info">
+                            <h3 id="expiredMembers">0</h3>
+                            <p>منتهية العضوية</p>
+                            <small>بحاجة تجديد</small>
+                        </div>
+                    </div>
+                    
+                    <div class="member-stat-card">
+                        <div class="member-stat-icon purple">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <div class="member-stat-info">
+                            <h3 id="newMembers">0</h3>
+                            <p>جديد هذا الشهر</p>
+                            <small>+8 عن الشهر الماضي</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- =====Toolbar===== -->
+                <div class="member-toolbar">
+                    <div class="member-filters">
+                        <select class="member-filter" id="membershipFilter" onchange="filterMembers()">
+                            <option value="all">جميع العضويات</option>
+                            <option value="basic">أساسية</option>
+                            <option value="pro">احترافية</option>
+                            <option value="premium">مميزة</option>
+                        </select>
+                        
+                        <select class="member-filter" id="statusFilter" onchange="filterMembers()">
+                            <option value="all">جميع الحالات</option>
+                            <option value="active">نشط</option>
+                            <option value="inactive">منتهية</option>
+                            <option value="pending">معلق</option>
+                        </select>
+                        
+                        <input type="date" class="member-filter" id="dateFilter" onchange="filterMembers()">
+                    </div>
+                    
+                    <div style="display: flex; gap: 10px;">
+                        <div class="view-toggle">
+                            <button class="view-toggle-btn active" onclick="toggleView('table')" title="عرض كجدول">
+                                <i class="fas fa-table"></i>
+                            </button>
+                            <button class="view-toggle-btn" onclick="toggleView('grid')" title="عرض كبطاقات">
+                                <i class="fas fa-th-large"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="member-actions">
+                            <button class="btn-export" onclick="exportMembers('csv')">
+                                <i class="fas fa-file-csv"></i> CSV
+                            </button>
+                            <button class="btn-export" onclick="exportMembers('pdf')">
+                                <i class="fas fa-file-pdf"></i> PDF
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- =====Table display===== -->
+                <div id="tableView">
+                    <div class="table-responsive">
+                        <table class="members-table">
+                            <thead>
+                                <tr>
+                                    <th>العضو</th>
+                                    <th>البريد الإلكتروني</th>
+                                    <th>رقم الهاتف</th>
+                                    <th>نوع العضوية</th>
+                                    <th>تاريخ الاشتراك</th>
+                                    <th>تاريخ الانتهاء</th>
+                                    <th>الحالة</th>
+                                    <th>الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="membersTableBody">
+                                <!--It is packaged using JavaScript.-->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- =====Card display===== -->
+                <div id="gridView" style="display: none;">
+                    <div id="membersGrid" class="members-grid-view">
+                        <!--It is packaged using JavaScript.-->
+                    </div>
+                </div>
+                
+                <!-- =====pagination===== -->
+                <div class="pagination">
+                    <button class="page-btn disabled"><i class="fas fa-chevron-right"></i></button>
+                    <button class="page-btn active">1</button>
+                    <button class="page-btn">2</button>
+                    <button class="page-btn">3</button>
+                    <button class="page-btn">4</button>
+                    <button class="page-btn">5</button>
+                    <button class="page-btn"><i class="fas fa-chevron-left"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- =====Add/Edit Member window===== -->
+    <div id="memberModal" class="modal">
+        <div class="modal-content" style="max-width: 700px;">
+            <div class="modal-header">
+                <h3 id="memberModalTitle">إضافة عضو جديد</h3>
+                <span class="close-modal" onclick="closeMemberModal()">&times;</span>
+            </div>
+            
+            <form class="member-form" onsubmit="event.preventDefault(); saveMember();">
+                <input type="hidden" id="memberId">
+                
+                <div class="form-section">
+                    <h4><i class="fas fa-user"></i> المعلومات الشخصية</h4>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>الاسم الكامل</label>
+                            <input type="text" class="form-control" id="fullName" required>
+                        </div>
+                        <div class="form-group">
+                            <label>تاريخ الميلاد</label>
+                            <input type="date" class="form-control" id="birthDate" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>البريد الإلكتروني</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>رقم الهاتف</label>
+                            <input type="tel" class="form-control" id="phone" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>الجنس</label>
+                            <select class="form-control" id="gender">
+                                <option value="male">ذكر</option>
+                                <option value="female">أنثى</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>العنوان</label>
+                            <input type="text" class="form-control" id="address">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h4><i class="fas fa-id-card"></i> معلومات العضوية</h4>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>نوع العضوية</label>
+                            <select class="form-control" id="membershipType">
+                                <option value="basic">أساسية</option>
+                                <option value="pro">احترافية</option>
+                                <option value="premium">مميزة</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>الحالة</label>
+                            <select class="form-control" id="status">
+                                <option value="active">نشط</option>
+                                <option value="inactive">منتهية</option>
+                                <option value="pending">معلق</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>تاريخ البدء</label>
+                            <input type="date" class="form-control" id="startDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label>تاريخ الانتهاء</label>
+                            <input type="date" class="form-control" id="endDate" required>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="display: flex; gap: 10px; justify-content: flex-end;">
+                    <button type="button" class="btn-small secondary" onclick="closeMemberModal()">إلغاء</button>
+                    <button type="submit" class="btn-small success">حفظ</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- =====Member details display window===== -->
+    <div id="viewMemberModal" class="modal">
+        <div class="modal-content" style="max-width: 500px;">
+            <div class="modal-header">
+                <h3>تفاصيل العضو</h3>
+                <span class="close-modal" onclick="closeViewMemberModal()">&times;</span>
+            </div>
+            
+            <div id="memberDetailsContent">
+                <!--It is packaged using JavaScript.-->
+            </div>
+            
+            <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px;">
+                <button type="button" class="btn-small" onclick="closeViewMemberModal()">إغلاق</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
