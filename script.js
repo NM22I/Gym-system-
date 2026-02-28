@@ -1,17 +1,17 @@
-// ===== script.js - دوال صفحة تسجيل الدخول فقط =====
+// ===== Login page functions=====//
 
-// متغيرات عامة
+//General variables//
 let currentStep = 1;
 let selectedPlan = null;
 
-// ===== التهيئة عند تحميل الصفحة =====
+// ===== Formatting when loading the page =====//
 document.addEventListener('DOMContentLoaded', function() {
     console.log('صفحة تسجيل الدخول جاهزة');
 });
 
-// ===== دوال التبويبات =====
+// ===== Tab functions =====//
 
-// تبديل بين تبويبات تسجيل الدخول وإنشاء حساب
+// Switch between the login and account creation tabs//
 function switchAuthTab(tab) {
     document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.auth-content').forEach(c => c.classList.remove('active'));
@@ -25,9 +25,9 @@ function switchAuthTab(tab) {
     }
 }
 
-// ===== دوال تسجيل الدخول =====
+// ===== Login functions =====//
 
-// اختيار طريقة تسجيل الدخول
+// Choose a login method//
 function selectLoginMethod(method) {
     document.querySelectorAll('.option-card').forEach(c => c.classList.remove('active'));
     document.getElementById(method + '-option').classList.add('active');
@@ -35,8 +35,7 @@ function selectLoginMethod(method) {
     document.querySelectorAll('.login-field').forEach(f => f.classList.remove('active'));
     document.getElementById(method + '-login').classList.add('active');
 }
-
-// إظهار/إخفاء كلمة المرور
+//Hide password//
 function togglePassword(element) {
     const input = element.parentElement.querySelector('input');
     if (input.type === 'password') {
@@ -50,7 +49,7 @@ function togglePassword(element) {
     }
 }
 
-// معالجة تسجيل الدخول
+// Login processing//
 function handleLogin(event) {
     event.preventDefault();
     
@@ -88,9 +87,9 @@ function handleLogin(event) {
     }, 1500);
 }
 
-// ===== دوال إنشاء الحساب =====
+// ===== Account creation functions =====//
 
-// تحديث قوة كلمة المرور
+// Upgrade your password strength//
 function updatePasswordStrength(password) {
     const bar = document.querySelector('.strength-bar');
     const text = document.querySelector('.password-strength span');
@@ -111,7 +110,7 @@ function updatePasswordStrength(password) {
     text.textContent = `قوة كلمة المرور: ${levels[strength]}`;
 }
 
-// التنقل بين خطوات التسجيل
+// Navigating between login steps//
 function nextStep(step) {
     if (!validateStep(currentStep)) return;
     
@@ -134,7 +133,7 @@ function prevStep(step) {
     document.querySelector(`.step[data-step="${currentStep}"]`).classList.add('active');
 }
 
-// التحقق من صحة كل خطوة
+// Verify the validity of each step//
 function validateStep(step) {
     switch(step) {
         case 1:
@@ -177,14 +176,14 @@ function validateStep(step) {
     }
 }
 
-// اختيار خطة العضوية
+//Choosing a membership plan//
 function selectPlan(plan) {
     selectedPlan = plan;
     document.querySelectorAll('.plan-card').forEach(c => c.classList.remove('selected'));
     document.getElementById('plan-' + plan)?.classList.add('selected');
 }
 
-// معالجة إنشاء حساب
+// Account creation process//
 function handleRegister(event) {
     event.preventDefault();
     
@@ -227,7 +226,7 @@ function handleRegister(event) {
     }, 2000);
 }
 
-// ===== دوال نافذة نسيت كلمة المرور =====
+// =====Functions window, forgotten password=====//
 
 function showForgotPassword() {
     document.getElementById('forgotModal').style.display = 'flex';
@@ -252,7 +251,7 @@ function sendResetLink() {
     }, 1500);
 }
 
-// ===== تسجيل الدخول عبر وسائل التواصل =====
+// ===== Log in via social media =====//
 
 function socialLogin(platform) {
     showLoading();
@@ -275,9 +274,9 @@ function socialLogin(platform) {
     }, 1500);
 }
 
-// ===== دوال مساعدة =====
+// ===== Helpful functions =====//
 
-// إظهار الإشعارات
+// Show notifications//
 function showNotification(message, type = 'info') {
     const notification = document.createElement('div');
     notification.className = `notification ${type}`;
@@ -302,7 +301,7 @@ function showNotification(message, type = 'info') {
     }, 2000);
 }
 
-// إظهار التحميل
+// Show loading//
 function showLoading() {
     let overlay = document.getElementById('loadingOverlay');
     if (!overlay) {
@@ -315,7 +314,7 @@ function showLoading() {
     overlay.style.display = 'flex';
 }
 
-// إخفاء التحميل
+// Hide download//
 function hideLoading() {
     const overlay = document.getElementById('loadingOverlay');
     if (overlay) {
@@ -324,9 +323,11 @@ function hideLoading() {
 }
 
 
-// ===== دوال لوحة التحكم (تضاف في نهاية الملف) =====
+// ===== function dashboard =====//
 
-// التحقق من تسجيل الدخول عند فتح الصفحة
+
+
+// Check your login when you open the page//
 document.addEventListener('DOMContentLoaded', function() {
     if (window.location.pathname.includes('2-dashboard.html')) {
         checkAuth();
@@ -336,7 +337,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// التحقق من تسجيل الدخول
+// Login verification//
 function checkAuth() {
     const currentUser = localStorage.getItem('currentUser');
     if (!currentUser) {
@@ -344,7 +345,7 @@ function checkAuth() {
     }
 }
 
-// تحميل بيانات المستخدم
+// Upload user data//
 function loadUserData() {
     const userData = JSON.parse(localStorage.getItem('currentUser') || '{}');
     
@@ -356,7 +357,7 @@ function loadUserData() {
         el.textContent = userData.membership || 'عضوية احترافية';
     });
     
-    // تحديث اسم المستخدم في الترحيب
+    // Update username in welcome//
     const welcomeName = document.getElementById('welcomeUserName');
     if (welcomeName) {
         const firstName = (userData.name || 'أحمد').split(' ')[0];
@@ -364,7 +365,7 @@ function loadUserData() {
     }
 }
 
-// تفعيل الرابط النشط في القائمة
+// Activate the active link in the list//
 function highlightActiveMenu() {
     const currentPage = window.location.pathname.split('/').pop();
     document.querySelectorAll('.sidebar-menu a').forEach(link => {
@@ -374,7 +375,7 @@ function highlightActiveMenu() {
     });
 }
 
-// تبديل قائمة المستخدم
+// Switch user menu//
 function toggleUserMenu() {
     const menu = document.getElementById('userMenu');
     if (menu) {
@@ -382,7 +383,7 @@ function toggleUserMenu() {
     }
 }
 
-// إغلاق القائمة عند النقر خارجها
+// Close the menu when you click outside of it//
 document.addEventListener('click', function(event) {
     const menu = document.getElementById('userMenu');
     const button = document.querySelector('.user-dropdown');
@@ -392,7 +393,7 @@ document.addEventListener('click', function(event) {
     }
 });
 
-// تسجيل الخروج
+// Log out //
 function logout() {
     if (confirm('هل أنت متأكد من تسجيل الخروج؟')) {
         localStorage.removeItem('currentUser');
@@ -403,7 +404,7 @@ function logout() {
     }
 }
 
-// تحديث التاريخ والوقت
+// Update date and time//
 function updateDateTime() {
     const now = new Date();
     const options = {
@@ -418,10 +419,10 @@ function updateDateTime() {
     });
 }
 
-// تحديث التاريخ كل دقيقة
+// Date updated every minute//
 setInterval(updateDateTime, 60000);
 
-// دوال مؤقتة للصفحات الأخرى (سنكملها لاحقاً)
+// Temporary functions for other pages//
 function viewAllBookings() {
     alert('سيتم فتح صفحة جميع الحجوزات');
 }
@@ -434,9 +435,9 @@ function bookClass(classId) {
     alert('تم حجز الحصة رقم: ' + classId);
 }
 
-// ===== دوال إظهار وإخفاء القائمة الجانبية =====
+// ===== Functions to show and hide the sidebar =====
 
-// تبديل حالة القائمة الجانبية
+// Switch sidebar status//
 function toggleSidebar() {
     const sidebar = document.getElementById('sidebar');
     const mainContent = document.getElementById('mainContent');
@@ -444,22 +445,22 @@ function toggleSidebar() {
     const toggleIcon = document.querySelector('.menu-toggle i');
     
     if (window.innerWidth <= 768) {
-        // للشاشات الصغيرة
+        // For small screens//
         sidebar.classList.toggle('active');
         overlay.classList.toggle('active');
         
-        // منع التمرير عند فتح القائمة
+        // Prevent scrolling when opening the menu//
         if (sidebar.classList.contains('active')) {
             document.body.style.overflow = 'hidden';
         } else {
             document.body.style.overflow = 'auto';
         }
     } else {
-        // للشاشات الكبيرة
+        //For large screens//
         sidebar.classList.toggle('collapsed');
         mainContent.classList.toggle('sidebar-collapsed');
         
-        // تغيير شكل الأيقونة
+        //The icon's shape has changed.//
         if (sidebar.classList.contains('collapsed')) {
             toggleIcon.classList.remove('fa-chevron-right');
             toggleIcon.classList.add('fa-chevron-left');
@@ -469,8 +470,7 @@ function toggleSidebar() {
         }
     }
 }
-
-// إغلاق القائمة عند النقر على الطبقة الخلفية
+//The menu closes when you click on the background layer//
 function closeSidebar() {
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('sidebarOverlay');
@@ -480,7 +480,7 @@ function closeSidebar() {
     document.body.style.overflow = 'auto';
 }
 
-// تحديث حالة القائمة عند تغيير حجم الشاشة
+// Update menu status when changing screens//
 window.addEventListener('resize', function() {
     const sidebar = document.getElementById('sidebar');
     const mainContent = document.getElementById('mainContent');
@@ -488,7 +488,7 @@ window.addEventListener('resize', function() {
     const toggleIcon = document.querySelector('.menu-toggle i');
     
     if (window.innerWidth > 768) {
-        // للشاشات الكبيرة
+        //For large screens//
         sidebar.classList.remove('active');
         sidebar.classList.remove('collapsed');
         mainContent.classList.remove('sidebar-collapsed');
@@ -502,7 +502,7 @@ window.addEventListener('resize', function() {
     }
 });
 
-// منع إغلاق القائمة عند النقر داخلها
+// Prevent the menu from closing when clicked within it.//
 document.addEventListener('DOMContentLoaded', function() {
     const sidebar = document.getElementById('sidebar');
     if (sidebar) {
@@ -511,9 +511,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
-// ===== دوال الإشعارات =====
+// =====Notification functions =====//
 
-// بيانات تجريبية للإشعارات
+// Experimental data for notifications//
 let notifications = [
     {
         id: 1,
@@ -562,29 +562,29 @@ let notifications = [
     }
 ];
 
-// تبديل قائمة الإشعارات
+// Switch notifications list//
 function toggleNotifications() {
     const dropdown = document.getElementById('notificationsDropdown');
     dropdown.classList.toggle('show');
     loadNotifications();
     
-    // إغلاق قائمة المستخدم إذا كانت مفتوحة
+    // Close the user menu if it is open//
     const userMenu = document.getElementById('userMenu');
     if (userMenu.style.display === 'block') {
         userMenu.style.display = 'none';
     }
 }
 
-// تحميل الإشعارات
+// Download notifications//
 function loadNotifications() {
     const list = document.getElementById('notificationsList');
     if (!list) return;
     
-    // حساب عدد الإشعارات غير المقروءة
+    // Counting the number of unread notifications//
     const unreadCount = notifications.filter(n => !n.read).length;
     updateNotificationBadge(unreadCount);
     
-    // عرض الإشعارات
+    // View notifications//
     let html = '';
     notifications.slice(0, 4).forEach(notif => {
         html += `
@@ -604,7 +604,7 @@ function loadNotifications() {
     list.innerHTML = html;
 }
 
-// تحديث شارة الإشعارات
+// Update notification badge//
 function updateNotificationBadge(count) {
     const badge = document.getElementById('notificationBadge');
     if (badge) {
@@ -617,7 +617,7 @@ function updateNotificationBadge(count) {
     }
 }
 
-// تحديد الإشعار كمقروء
+// Mark notifications as read//
 function markAsRead(id) {
     const notification = notifications.find(n => n.id === id);
     if (notification) {
@@ -627,14 +627,14 @@ function markAsRead(id) {
     }
 }
 
-// تحديد الكل كمقروء
+// Mark all as read//
 function markAllAsRead() {
     notifications.forEach(n => n.read = true);
     loadNotifications();
     showNotification('تم تحديد جميع الإشعارات كمقروءة', 'success');
 }
 
-// إضافة إشعار جديد
+// Add new notification//
 function addNotification(title, description, icon, iconColor) {
     const newNotification = {
         id: notifications.length + 1,
@@ -649,11 +649,11 @@ function addNotification(title, description, icon, iconColor) {
     notifications.unshift(newNotification);
     loadNotifications();
     
-    // إظهار رسالة منبثقة
+    // Show pop-up message//
     showNotification('🔔 إشعار جديد: ' + title, 'info');
 }
 
-// محاكاة إشعارات جديدة كل دقيقة
+// Simulating new notifications every minute//
 setInterval(() => {
     const randomNotifications = [
         {
@@ -682,14 +682,14 @@ setInterval(() => {
         }
     ];
     
-    // 30% فرصة لظهور إشعار جديد كل دقيقة
+    //30% pinch to get a new notification every minute//
     if (Math.random() < 0.3) {
         const random = randomNotifications[Math.floor(Math.random() * randomNotifications.length)];
         addNotification(random.title, random.description, random.icon, random.color);
     }
-}, 60000); // كل دقيقة
+}, 60000); // every minute//
 
-// إغلاق الإشعارات عند النقر خارجها
+// Disable notifications when you click outside of them//
 document.addEventListener('click', function(event) {
     const dropdown = document.getElementById('notificationsDropdown');
     const bell = document.querySelector('.notifications');
@@ -698,3 +698,606 @@ document.addEventListener('click', function(event) {
         dropdown.classList.remove('show');
     }
 });
+// ===== Members Page Functions =====//
+
+// Global members data//
+let currentView = 'table'; // 'table' or 'grid'//
+let currentPage = 1;
+let membersPerPage = 10;
+let membersData = [
+    {
+        id: 1,
+        name: 'Ahmed Mohammed Ali',
+        email: 'ahmed@email.com',
+        phone: '0501234567',
+        membership: 'pro',
+        membershipType: 'Professional',
+        joinDate: '2024-01-01',
+        endDate: '2024-12-31',
+        status: 'active',
+        gender: 'male',
+        birthDate: '1990-05-15',
+        address: 'Riyadh, Al-Nuzhah District'
+    },
+    {
+        id: 2,
+        name: 'Sara Khaled',
+        email: 'sara@email.com',
+        phone: '0559876543',
+        membership: 'premium',
+        membershipType: 'Premium',
+        joinDate: '2024-01-05',
+        endDate: '2025-01-04',
+        status: 'active',
+        gender: 'female',
+        birthDate: '1992-08-20',
+        address: 'Jeddah, Al-Rawdah District'
+    },
+    {
+        id: 3,
+        name: 'Mohammed Omar',
+        email: 'mohamed@email.com',
+        phone: '0561122334',
+        membership: 'basic',
+        membershipType: 'Basic',
+        joinDate: '2023-12-15',
+        endDate: '2024-03-14',
+        status: 'pending',
+        gender: 'male',
+        birthDate: '1988-11-10',
+        address: 'Dammam, Al-Shati District'
+    },
+    {
+        id: 4,
+        name: 'Noura Ahmed',
+        email: 'noura@email.com',
+        phone: '0598765432',
+        membership: 'pro',
+        membershipType: 'Professional',
+        joinDate: '2023-11-20',
+        endDate: '2024-02-19',
+        status: 'inactive',
+        gender: 'female',
+        birthDate: '1995-03-25',
+        address: 'Al-Khobar, Al-Ulya District'
+    },
+    {
+        id: 5,
+        name: 'Faisal Abdullah',
+        email: 'faisal@email.com',
+        phone: '0576655443',
+        membership: 'basic',
+        membershipType: 'Basic',
+        joinDate: '2024-01-10',
+        endDate: '2024-04-09',
+        status: 'active',
+        gender: 'male',
+        birthDate: '1993-07-30',
+        address: 'Makkah, Al-Aziziyah District'
+    }
+];
+
+// Load members page//
+function loadMembersPage() {
+    console.log('Loading members page...');
+    updateMemberStats();
+    renderMembersTable();
+}
+
+// Update member statistics//
+function updateMemberStats() {
+    const total = membersData.length;
+    const active = membersData.filter(m => m.status === 'active').length;
+    const expired = membersData.filter(m => m.status === 'inactive').length;
+    const newThisMonth = membersData.filter(m => {
+        const joinDate = new Date(m.joinDate);
+        const now = new Date();
+        return joinDate.getMonth() === now.getMonth() && joinDate.getFullYear() === now.getFullYear();
+    }).length;
+
+    document.getElementById('totalMembers').textContent = total;
+    document.getElementById('activeMembers').textContent = active;
+    document.getElementById('expiredMembers').textContent = expired;
+    document.getElementById('newMembers').textContent = newThisMonth;
+}
+
+// Toggle view (table/grid)//
+function toggleView(view) {
+    currentView = view;
+    document.querySelectorAll('.view-toggle-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    event.currentTarget.classList.add('active');
+    
+    const tableView = document.getElementById('tableView');
+    const gridView = document.getElementById('gridView');
+    
+    if (view === 'table') {
+        tableView.style.display = 'block';
+        gridView.style.display = 'none';
+        renderMembersTable();
+    } else {
+        tableView.style.display = 'none';
+        gridView.style.display = 'block';
+        renderMembersGrid();
+    }
+}
+
+// Render members table//
+function renderMembersTable() {
+    const tbody = document.getElementById('membersTableBody');
+    if (!tbody) return;
+    
+    let html = '';
+    membersData.forEach(member => {
+        const statusClass = member.status === 'active' ? 'active' : 
+                           member.status === 'inactive' ? 'inactive' : 'pending';
+        const statusText = member.status === 'active' ? 'Active' :
+                          member.status === 'inactive' ? 'Expired' : 'Pending';
+        
+        const membershipClass = member.membership === 'premium' ? 'premium' :
+                               member.membership === 'pro' ? 'pro' : 'basic';
+        const membershipText = member.membershipType;
+        
+        html += `
+            <tr>
+                <td>
+                    <div class="member-table-avatar">
+                        <div class="member-avatar-small">${member.name.charAt(0)}</div>
+                        ${member.name}
+                    </div>
+                </td>
+                <td>${member.email}</td>
+                <td>${member.phone}</td>
+                <td><span class="membership-badge ${membershipClass}">${membershipText}</span></td>
+                <td>${member.joinDate}</td>
+                <td>${member.endDate}</td>
+                <td><span class="status-badge ${statusClass}">${statusText}</span></td>
+                <td>
+                    <div class="action-buttons">
+                        <button class="btn-icon btn-view" onclick="viewMember(${member.id})" title="View"><i class="fas fa-eye"></i></button>
+                        <button class="btn-icon btn-edit" onclick="editMember(${member.id})" title="Edit"><i class="fas fa-edit"></i></button>
+                        <button class="btn-icon btn-delete" onclick="deleteMember(${member.id})" title="Delete"><i class="fas fa-trash"></i></button>
+                    </div>
+                </td>
+            </tr>
+        `;
+    });
+    
+    tbody.innerHTML = html;
+}
+
+// Render members grid//
+function renderMembersGrid() {
+    const grid = document.getElementById('membersGrid');
+    if (!grid) return;
+    
+    let html = '';
+    membersData.forEach(member => {
+        const statusClass = member.status === 'active' ? 'active' : 
+                           member.status === 'inactive' ? 'inactive' : 'pending';
+        const statusText = member.status === 'active' ? 'Active' :
+                          member.status === 'inactive' ? 'Expired' : 'Pending';
+        
+        const membershipClass = member.membership === 'premium' ? 'premium' :
+                               member.membership === 'pro' ? 'pro' : 'basic';
+        
+        html += `
+            <div class="member-card">
+                <div class="member-card-header">
+                    <div class="member-card-avatar">${member.name.charAt(0)}</div>
+                    <div class="member-card-info">
+                        <h4>${member.name}</h4>
+                        <span class="member-card-badge ${membershipClass}">${member.membershipType}</span>
+                    </div>
+                </div>
+                <div class="member-card-body">
+                    <div class="member-card-info-row">
+                        <i class="fas fa-envelope"></i>
+                        <span>${member.email}</span>
+                    </div>
+                    <div class="member-card-info-row">
+                        <i class="fas fa-phone"></i>
+                        <span>${member.phone}</span>
+                    </div>
+                    <div class="member-card-info-row">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Joined: ${member.joinDate}</span>
+                    </div>
+                    <div class="member-card-info-row">
+                        <i class="fas fa-calendar-times"></i>
+                        <span>Ends: ${member.endDate}</span>
+                    </div>
+                </div>
+                <div class="member-card-footer">
+                    <span class="member-card-status ${statusClass}">${statusText}</span>
+                    <div class="member-card-actions">
+                        <button class="btn-icon btn-view" onclick="viewMember(${member.id})"><i class="fas fa-eye"></i></button>
+                        <button class="btn-icon btn-edit" onclick="editMember(${member.id})"><i class="fas fa-edit"></i></button>
+                        <button class="btn-icon btn-delete" onclick="deleteMember(${member.id})"><i class="fas fa-trash"></i></button>
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+    
+    grid.innerHTML = html;
+}
+
+// Filter members//
+function filterMembers() {
+    const membershipFilter = document.getElementById('membershipFilter').value;
+    const statusFilter = document.getElementById('statusFilter').value;
+    const dateFilter = document.getElementById('dateFilter').value;
+    
+    let filtered = [...membersData];
+    
+    if (membershipFilter !== 'all') {
+        filtered = filtered.filter(m => m.membership === membershipFilter);
+    }
+    
+    if (statusFilter !== 'all') {
+        filtered = filtered.filter(m => m.status === statusFilter);
+    }
+    
+    if (dateFilter) {
+        filtered = filtered.filter(m => m.joinDate >= dateFilter);
+    }
+    
+    // Update view//
+    if (currentView === 'table') {
+        renderFilteredTable(filtered);
+    } else {
+        renderFilteredGrid(filtered);
+    }
+}
+
+// Render filtered table//
+function renderFilteredTable(filtered) {
+    const tbody = document.getElementById('membersTableBody');
+    if (!tbody) return;
+    
+    let html = '';
+    filtered.forEach(member => {
+        const statusClass = member.status === 'active' ? 'active' : 
+                           member.status === 'inactive' ? 'inactive' : 'pending';
+        const statusText = member.status === 'active' ? 'Active' :
+                          member.status === 'inactive' ? 'Expired' : 'Pending';
+        
+        const membershipClass = member.membership === 'premium' ? 'premium' :
+                               member.membership === 'pro' ? 'pro' : 'basic';
+        const membershipText = member.membershipType;
+        
+        html += `
+            <tr>
+                <td>
+                    <div class="member-table-avatar">
+                        <div class="member-avatar-small">${member.name.charAt(0)}</div>
+                        ${member.name}
+                    </div>
+                </td>
+                <td>${member.email}</td>
+                <td>${member.phone}</td>
+                <td><span class="membership-badge ${membershipClass}">${membershipText}</span></td>
+                <td>${member.joinDate}</td>
+                <td>${member.endDate}</td>
+                <td><span class="status-badge ${statusClass}">${statusText}</span></td>
+                <td>
+                    <div class="action-buttons">
+                        <button class="btn-icon btn-view" onclick="viewMember(${member.id})"><i class="fas fa-eye"></i></button>
+                        <button class="btn-icon btn-edit" onclick="editMember(${member.id})"><i class="fas fa-edit"></i></button>
+                        <button class="btn-icon btn-delete" onclick="deleteMember(${member.id})"><i class="fas fa-trash"></i></button>
+                    </div>
+                </td>
+            </tr>
+        `;
+    });
+    
+    tbody.innerHTML = html;
+}
+
+// Render filtered grid//
+function renderFilteredGrid(filtered) {
+    const grid = document.getElementById('membersGrid');
+    if (!grid) return;
+    
+    let html = '';
+    filtered.forEach(member => {
+        const statusClass = member.status === 'active' ? 'active' : 
+                           member.status === 'inactive' ? 'inactive' : 'pending';
+        const statusText = member.status === 'active' ? 'Active' :
+                          member.status === 'inactive' ? 'Expired' : 'Pending';
+        
+        const membershipClass = member.membership === 'premium' ? 'premium' :
+                               member.membership === 'pro' ? 'pro' : 'basic';
+        
+        html += `
+            <div class="member-card">
+                <div class="member-card-header">
+                    <div class="member-card-avatar">${member.name.charAt(0)}</div>
+                    <div class="member-card-info">
+                        <h4>${member.name}</h4>
+                        <span class="member-card-badge ${membershipClass}">${member.membershipType}</span>
+                    </div>
+                </div>
+                <div class="member-card-body">
+                    <div class="member-card-info-row">
+                        <i class="fas fa-envelope"></i>
+                        <span>${member.email}</span>
+                    </div>
+                    <div class="member-card-info-row">
+                        <i class="fas fa-phone"></i>
+                        <span>${member.phone}</span>
+                    </div>
+                    <div class="member-card-info-row">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Joined: ${member.joinDate}</span>
+                    </div>
+                    <div class="member-card-info-row">
+                        <i class="fas fa-calendar-times"></i>
+                        <span>Ends: ${member.endDate}</span>
+                    </div>
+                </div>
+                <div class="member-card-footer">
+                    <span class="member-card-status ${statusClass}">${statusText}</span>
+                    <div class="member-card-actions">
+                        <button class="btn-icon btn-view" onclick="viewMember(${member.id})"><i class="fas fa-eye"></i></button>
+                        <button class="btn-icon btn-edit" onclick="editMember(${member.id})"><i class="fas fa-edit"></i></button>
+                        <button class="btn-icon btn-delete" onclick="deleteMember(${member.id})"><i class="fas fa-trash"></i></button>
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+    
+    grid.innerHTML = html;
+}
+
+// Search members//
+function searchMembers(input) {
+    const searchText = input.value.toLowerCase();
+    
+    const filtered = membersData.filter(member => 
+        member.name.toLowerCase().includes(searchText) ||
+        member.email.toLowerCase().includes(searchText) ||
+        member.phone.includes(searchText)
+    );
+    
+    if (currentView === 'table') {
+        renderFilteredTable(filtered);
+    } else {
+        renderFilteredGrid(filtered);
+    }
+}
+
+// Add new member - FIXED//
+function addMember() {
+    // Reset form//
+    document.getElementById('memberModalTitle').textContent = 'Add New Member';
+    document.getElementById('memberId').value = '';
+    document.getElementById('fullName').value = '';
+    document.getElementById('email').value = '';
+    document.getElementById('phone').value = '';
+    document.getElementById('birthDate').value = '';
+    document.getElementById('gender').value = 'male';
+    document.getElementById('membershipType').value = 'basic';
+    document.getElementById('status').value = 'active';
+    document.getElementById('startDate').value = '';
+    document.getElementById('endDate').value = '';
+    document.getElementById('address').value = '';
+    
+    // Show modal//
+    document.getElementById('memberModal').style.display = 'flex';
+}
+
+// Edit member - FIXED//
+function editMember(id) {
+    const member = membersData.find(m => m.id === id);
+    if (!member) return;
+    
+    document.getElementById('memberModalTitle').textContent = 'Edit Member';
+    document.getElementById('memberId').value = member.id;
+    document.getElementById('fullName').value = member.name;
+    document.getElementById('email').value = member.email;
+    document.getElementById('phone').value = member.phone;
+    document.getElementById('birthDate').value = member.birthDate;
+    document.getElementById('gender').value = member.gender;
+    document.getElementById('membershipType').value = member.membership;
+    document.getElementById('status').value = member.status;
+    document.getElementById('startDate').value = member.joinDate;
+    document.getElementById('endDate').value = member.endDate;
+    document.getElementById('address').value = member.address;
+    
+    document.getElementById('memberModal').style.display = 'flex';
+}
+
+// Save member - FIXED//
+function saveMember() {
+    // Get form values//
+    const memberId = document.getElementById('memberId').value;
+    const fullName = document.getElementById('fullName').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const birthDate = document.getElementById('birthDate').value;
+    const gender = document.getElementById('gender').value;
+    const membershipType = document.getElementById('membershipType').value;
+    const status = document.getElementById('status').value;
+    const startDate = document.getElementById('startDate').value;
+    const endDate = document.getElementById('endDate').value;
+    const address = document.getElementById('address').value;
+    
+    // Validate required fields//
+    if (!fullName || !email || !phone || !startDate || !endDate) {
+        showNotification('Please fill all required fields', 'error');
+        return;
+    }
+    
+    // Determine membership display name//
+    let membershipDisplayName = 'Basic';
+    if (membershipType === 'pro') membershipDisplayName = 'Professional';
+    if (membershipType === 'premium') membershipDisplayName = 'Premium';
+    
+    // Create member object//
+    const memberData = {
+        id: memberId ? parseInt(memberId) : generateNewId(),
+        name: fullName,
+        email: email,
+        phone: phone,
+        membership: membershipType,
+        membershipType: membershipDisplayName,
+        joinDate: startDate,
+        endDate: endDate,
+        status: status,
+        gender: gender,
+        birthDate: birthDate,
+        address: address
+    };
+    
+    if (memberId) {
+        // Edit existing member//
+        const index = membersData.findIndex(m => m.id === parseInt(memberId));
+        if (index !== -1) {
+            membersData[index] = memberData;
+            showNotification('Member updated successfully', 'success');
+        }
+    } else {
+        // Add new member//
+        membersData.push(memberData);
+        showNotification('Member added successfully', 'success');
+    }
+    
+    // Close modal and refresh view//
+    closeMemberModal();
+    updateMemberStats();
+    
+    if (currentView === 'table') {
+        renderMembersTable();
+    } else {
+        renderMembersGrid();
+    }
+}
+
+// Generate new ID//
+function generateNewId() {
+    const maxId = membersData.reduce((max, member) => Math.max(max, member.id), 0);
+    return maxId + 1;
+}
+
+// Delete member//
+function deleteMember(id) {
+    if (confirm('Are you sure you want to delete this member?')) {
+        membersData = membersData.filter(m => m.id !== id);
+        showNotification('Member deleted successfully', 'success');
+        updateMemberStats();
+        
+        if (currentView === 'table') {
+            renderMembersTable();
+        } else {
+            renderMembersGrid();
+        }
+    }
+}
+
+// View member details//
+function viewMember(id) {
+    const member = membersData.find(m => m.id === id);
+    if (!member) return;
+    
+    const statusText = member.status === 'active' ? 'Active' :
+                      member.status === 'inactive' ? 'Expired' : 'Pending';
+    
+    const detailsHtml = `
+        <div class="member-profile-card">
+            <div class="member-profile-header">
+                <div class="member-profile-avatar">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="member-profile-name">${member.name}</div>
+                <div class="member-profile-badge">${member.membershipType}</div>
+            </div>
+            <div class="member-profile-body">
+                <div class="member-profile-info">
+                    <i class="fas fa-envelope"></i>
+                    <span>Email:</span>
+                    <strong>${member.email}</strong>
+                </div>
+                <div class="member-profile-info">
+                    <i class="fas fa-phone"></i>
+                    <span>Phone:</span>
+                    <strong>${member.phone}</strong>
+                </div>
+                <div class="member-profile-info">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Birth Date:</span>
+                    <strong>${member.birthDate}</strong>
+                </div>
+                <div class="member-profile-info">
+                    <i class="fas fa-venus-mars"></i>
+                    <span>Gender:</span>
+                    <strong>${member.gender === 'male' ? 'Male' : 'Female'}</strong>
+                </div>
+                <div class="member-profile-info">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>Join Date:</span>
+                    <strong>${member.joinDate}</strong>
+                </div>
+                <div class="member-profile-info">
+                    <i class="fas fa-calendar-times"></i>
+                    <span>End Date:</span>
+                    <strong>${member.endDate}</strong>
+                </div>
+                <div class="member-profile-info">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Address:</span>
+                    <strong>${member.address}</strong>
+                </div>
+                <div class="member-profile-info">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Status:</span>
+                    <strong><span class="status-badge ${member.status}">${statusText}</span></strong>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.getElementById('memberDetailsContent').innerHTML = detailsHtml;
+    document.getElementById('viewMemberModal').style.display = 'flex';
+}
+
+// Close member modal//
+function closeMemberModal() {
+    document.getElementById('memberModal').style.display = 'none';
+}
+
+// Close view member modal//
+function closeViewMemberModal() {
+    document.getElementById('viewMemberModal').style.display = 'none';
+}
+
+// Export members data//
+function exportMembers(type) {
+    if (type === 'csv') {
+        // Export CSV//
+        const headers = ['Name', 'Email', 'Phone', 'Membership', 'Join Date', 'End Date', 'Status'];
+        const rows = membersData.map(m => [
+            m.name,
+            m.email,
+            m.phone,
+            m.membershipType,
+            m.joinDate,
+            m.endDate,
+            m.status === 'active' ? 'Active' : m.status === 'inactive' ? 'Expired' : 'Pending'
+        ]);
+        
+        let csvContent = headers.join(',') + '\n' + rows.map(row => row.join(',')).join('\n');
+        const blob = new Blob(['\uFEFF' + csvContent], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'members.csv';
+        link.click();
+        
+        showNotification('Data exported successfully', 'success');
+    } else {
+        showNotification('Preparing PDF file...', 'info');
+    }
+}
