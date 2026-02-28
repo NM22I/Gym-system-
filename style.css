@@ -1,4 +1,4 @@
-/* ===== style.css - التنسيقات الرئيسية ===== */
+/* ===== style.css -  Main formats ===== */
 @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap');
 
 * {
@@ -210,7 +210,7 @@ body {
     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
-/* ===== قوة كلمة المرور ===== */
+/* ===== Password strength===== */
 .password-strength {
     margin-top: 8px;
     display: flex;
@@ -238,7 +238,7 @@ body {
     transition: width 0.3s;
 }
 
-/* ===== خطوات التسجيل ===== */
+/* =====Registration steps ===== */
 .progress-steps {
     display: flex;
     justify-content: space-between;
@@ -302,7 +302,7 @@ body {
     display: block;
 }
 
-/* ===== خطط العضوية ===== */
+/* ===== Membership Plans ===== */
 .membership-plans {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -394,7 +394,7 @@ body {
 .plan-features li .fa-check { color: #28a745; }
 .plan-features li .fa-times { color: #dc3545; }
 
-/* ===== تسجيل الدخول عبر وسائل التواصل ===== */
+/* ===== Log in via social media ===== */
 .social-login {
     margin-top: 30px;
     text-align: center;
@@ -428,7 +428,7 @@ body {
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-/* ===== الأزرار ===== */
+/* ===== buttons ===== */
 .btn {
     width: 100%;
     padding: 14px;
@@ -502,7 +502,7 @@ body {
     color: #333;
 }
 
-/* ===== الروابط ===== */
+/* ===== links ===== */
 .links {
     text-align: center;
     margin-top: 20px;
@@ -531,8 +531,10 @@ body {
     gap: 5px;
     cursor: pointer;
 }
+/*------Format dashboard ------*/
 
-/* ===== لوحة التحكم ===== */
+
+/* ===== dashboard ===== */
 .dashboard-body {
     background: #f4f7fc;
     display: block;
@@ -544,7 +546,7 @@ body {
     min-height: 100vh;
 }
 
-/* ===== القائمة الجانبية ===== */
+/* ===== Said menu ===== */
 .sidebar {
     width: 280px;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -572,7 +574,7 @@ body {
     font-size: 24px;
 }
 
-/* ===== معلومات المستخدم في القائمة الجانبية ===== */
+/* ===== User information in the sidebar ===== */
 .user-info {
     text-align: center;
     padding: 20px 0;
@@ -604,7 +606,7 @@ body {
     opacity: 0.9;
 }
 
-/* ===== قائمة التنقل الجانبية ===== */
+/* ===== Side navigation menu ===== */
 .sidebar-menu {
     list-style: none;
     padding: 0;
@@ -637,7 +639,7 @@ body {
     transform: translateX(5px);
 }
 
-/* ===== المحتوى الرئيسي ===== */
+/* ===== Main content ===== */
 .main-content {
     flex: 1;
     margin-right: 280px;
@@ -645,7 +647,7 @@ body {
     transition: margin-right 0.3s ease;
 }
 
-/* ===== زر القائمة الجانبية ===== */
+/* ===== Side menu button  ===== */
 .menu-toggle {
     display: none;
     position: fixed;
@@ -668,7 +670,7 @@ body {
     transform: scale(1.1);
 }
 
-/* ===== طبقة خلفية للقائمة الجانبية ===== */
+/* ===== Sidebar background layer ===== */
 .sidebar-overlay {
     display: none;
     position: fixed;
@@ -684,7 +686,7 @@ body {
     display: block;
 }
 
-/* ===== الشريط العلوي ===== */
+/* ===== top strip ===== */
 .top-bar {
     background: white;
     padding: 15px 25px;
@@ -730,7 +732,7 @@ body {
     position: relative;
 }
 
-/* ===== الإشعارات ===== */
+/* ===== Notification ===== */
 .notifications {
     position: relative;
     cursor: pointer;
@@ -766,7 +768,7 @@ body {
     font-weight: 600;
 }
 
-/* ===== قائمة الإشعارات المنسدلة ===== */
+/* ===== Drop-down notifications list ===== */
 .notifications-dropdown {
     display: none;
     position: absolute;
@@ -894,7 +896,7 @@ body {
     text-decoration: underline;
 }
 
-/* ===== قائمة المستخدم ===== */
+/* ===== User menu ===== */
 .user-dropdown {
     display: flex;
     align-items: center;
@@ -943,7 +945,7 @@ body {
     border-top: 1px solid #eee;
 }
 
-/* ===== بطاقة الترحيب ===== */
+/* ===== Welcome card ===== */
 .welcome-card {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
@@ -963,7 +965,7 @@ body {
     margin-top: 10px;
 }
 
-/* ===== بطاقات الإحصائيات ===== */
+/* ===== Statistics cards ===== */
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -1008,7 +1010,7 @@ body {
     color: #666;
 }
 
-/* ===== مؤشرات الاتجاه ===== */
+/* ===== Trend indicators ===== */
 .trend {
     font-size: 12px;
     display: flex;
@@ -1020,7 +1022,7 @@ body {
 .trend.up { color: #28a745; }
 .trend.down { color: #dc3545; }
 
-/* ===== بطاقات المحتوى ===== */
+/* ===== Content card ===== */
 .content-card {
     background: white;
     border-radius: 15px;
@@ -1042,7 +1044,7 @@ body {
     margin: 0;
 }
 
-/* ===== الروابط السريعة ===== */
+/* ===== Quick links ===== */
 .quick-links {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -1072,7 +1074,7 @@ body {
     margin-bottom: 5px;
 }
 
-/* ===== الجداول ===== */
+/* ===== Tables ===== */
 .table-responsive {
     overflow-x: auto;
 }
@@ -1099,7 +1101,7 @@ tr:hover {
     background: #f8f9fa;
 }
 
-/* ===== الصور المصغرة للأعضاء ===== */
+/* ===== Thumbnails of members ===== */
 .member-avatar {
     width: 35px;
     height: 35px;
@@ -1119,7 +1121,7 @@ tr td:first-child {
     gap: 10px;
 }
 
-/* ===== الشارات ===== */
+/* ===== badges ===== */
 .badge-success {
     background: #28a745;
     color: white;
@@ -1147,7 +1149,7 @@ tr td:first-child {
     display: inline-block;
 }
 
-/* ===== النشاطات الأخيرة ===== */
+/* ===== Recent activities ===== */
 .activity-item {
     display: flex;
     align-items: center;
@@ -1198,7 +1200,7 @@ tr td:first-child {
     color: #999;
 }
 
-/* ===== الإشعارات المنبثقة ===== */
+/* ===== Pop-up notifications ===== */
 .notification-popup {
     position: fixed;
     top: 20px;
@@ -1234,7 +1236,7 @@ tr td:first-child {
 .notification-popup.warning i { color: #ffc107; }
 .notification-popup.info i { color: #17a2b8; }
 
-/* ===== تراكب التحميل ===== */
+/* ===== Load overlay ===== */
 .loading-overlay {
     position: fixed;
     top: 0;
@@ -1263,7 +1265,7 @@ tr td:first-child {
     100% { transform: rotate(360deg); }
 }
 
-/* ===== النوافذ المنبثقة ===== */
+/* ===== Pop-up window ===== */
 .modal {
     display: none;
     position: fixed;
@@ -1307,13 +1309,13 @@ tr td:first-child {
     color: #333;
 }
 
-/* ===== فليكس ===== */
+/* ===== Felix ===== */
 .row {
     display: flex;
     gap: 20px;
 }
 
-/* ===== التجاوب مع الشاشات الصغيرة ===== */
+/* ===== Responsiveness to small screens ===== */
 @media (max-width: 1200px) {
     .row {
         flex-direction: column;
@@ -1400,4 +1402,509 @@ tr td:first-child {
     .sidebar.collapsed {
         transform: translateX(100%);
     }
+}
+
+/* ===== Member page formats ===== */
+
+/* Quick member statistics */
+.member-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.member-stat-card {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.member-stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+}
+
+.member-stat-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: white;
+}
+
+.member-stat-icon.blue { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+.member-stat-icon.green { background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%); }
+.member-stat-icon.orange { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+.member-stat-icon.purple { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+
+.member-stat-info h3 {
+    margin: 0;
+    font-size: 28px;
+    color: #333;
+}
+
+.member-stat-info p {
+    margin: 5px 0 0;
+    color: #666;
+    font-size: 14px;
+}
+
+.member-stat-info small {
+    display: block;
+    margin-top: 5px;
+    font-size: 12px;
+    color: #28a745;
+}
+
+/* Members' toolbar */
+.member-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.member-filters {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.member-filter {
+    padding: 8px 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-family: 'Tajawal', sans-serif;
+    background: white;
+    min-width: 150px;
+}
+
+.member-filter:focus {
+    border-color: #667eea;
+    outline: none;
+}
+
+.member-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-export {
+    padding: 8px 15px;
+    border: 1px solid #e0e0e0;
+    background: white;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #333;
+    transition: all 0.3s;
+}
+
+.btn-export:hover {
+    background: #f8f9fa;
+    border-color: #667eea;
+}
+
+.btn-export i {
+    color: #667eea;
+}
+
+/* Member card in card view */
+.members-grid-view {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.member-card {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.member-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+}
+
+.member-card-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.member-card-avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 28px;
+    font-weight: 500;
+}
+
+.member-card-info h4 {
+    margin: 0 0 5px;
+    font-size: 18px;
+    color: #333;
+}
+
+.member-card-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 15px;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.member-card-badge.premium {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: white;
+}
+
+.member-card-badge.pro {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+}
+
+.member-card-badge.basic {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.member-card-body {
+    margin-bottom: 15px;
+}
+
+.member-card-info-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 14px;
+    color: #666;
+}
+
+.member-card-info-row i {
+    width: 20px;
+    color: #667eea;
+}
+
+.member-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.member-card-status {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.member-card-status.active {
+    background: #d4edda;
+    color: #155724;
+}
+
+.member-card-status.inactive {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.member-card-status.pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.member-card-actions {
+    display: flex;
+    gap: 5px;
+}
+
+/* Display switch buttons */
+.view-toggle {
+    display: flex;
+    gap: 5px;
+    margin-right: 15px;
+}
+
+.view-toggle-btn {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #e0e0e0;
+    background: white;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    transition: all 0.3s;
+}
+
+.view-toggle-btn.active {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+}
+
+.view-toggle-btn:hover {
+    border-color: #667eea;
+}
+
+/* Improved Member Schedule */
+.members-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.members-table th {
+    background: #f8f9fa;
+    padding: 15px 12px;
+    font-weight: 600;
+    color: #333;
+}
+
+.members-table td {
+    padding: 15px 12px;
+    border-bottom: 1px solid #f0f0f0;
+    vertical-align: middle;
+}
+
+.members-table tr:hover {
+    background: #f8f9fa;
+}
+
+.member-table-avatar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.member-avatar-small {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 500;
+}
+
+.membership-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.membership-badge.premium {
+    background: #e3f2fd;
+    color: #0d47a1;
+}
+
+.membership-badge.pro {
+    background: #f3e5f5;
+    color: #4a148c;
+}
+
+.membership-badge.basic {
+    background: #e8f5e9;
+    color: #1b5e20;
+}
+
+.status-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.status-badge.active {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status-badge.inactive {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.status-badge.pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+/*pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 30px;
+}
+
+.page-btn {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #e0e0e0;
+    background: white;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    transition: all 0.3s;
+}
+
+.page-btn:hover {
+    border-color: #667eea;
+    color: #667eea;
+}
+
+.page-btn.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+}
+
+.page-btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Member Add/Edit Form */
+.member-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-section {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.form-section h4 {
+    margin: 0 0 15px;
+    color: #333;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.form-section h4 i {
+    color: #667eea;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+/* Member Information Card */
+.member-profile-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.member-profile-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 30px;
+    text-align: center;
+}
+
+.member-profile-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    font-size: 40px;
+    border: 3px solid white;
+}
+
+.member-profile-name {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.member-profile-badge {
+    display: inline-block;
+    padding: 5px 15px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 20px;
+    font-size: 13px;
+}
+
+.member-profile-body {
+    padding: 25px;
+}
+
+.member-profile-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.member-profile-info i {
+    width: 25px;
+    color: #667eea;
+    font-size: 18px;
+}
+
+.member-profile-info span {
+    flex: 1;
+    color: #666;
+}
+
+.member-profile-info strong {
+    color: #333;
+    font-weight: 600;
 }
